@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #efefef;
+        }
+
+        main {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #diceContainer {
+            width: 30vw;
+            height: 30vh;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            background: cyan;
+            border-radius: 10px;
+            font-size: 18pt;
+            font-weight: bold;
+        }
+
+        #tagBotao {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: blue;
+            color: white;
+            font-size: 14pt;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <h1>Lançador de Dados Online</h1>
+
+        <div id="diceContainer">
+            <figure>
+                <img src="" id="dadoImagem" alt="Dado" width="100px">
+                <figcaption></figcaption>
+            
+            <span id="resultado">?</span>
+        </div>
+
+        <button onclick="rolarDado()" id="tagBotao">Lançar Dados</button>
+    </main>
+
+    <script>
+
+        // Primeiro, precisamos capturar os elementos que iremos manipular
+        var botao = document.getElementById("tagBotao");
+        var dado = document.getElementById("resultado");
+        //var botao = document.querySelector("#tagBotao");
+        //var dado = document.querySelector("#resultado");
+
+        // Imagens que podemos usar para representar os dados
+        var imagens = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
+
+        // Uma alternativa é usar o addEventListener para "escutar" o evento de clique no botão
+        // botao.addEventListener("click", rolarDado);
+
+        // Função que será executada quando o botão for clicado
+        function rolarDado() {
+            // Math.random() -> Gera um número aleatório entre 0 e 1 (0 inclusive e 1 exclusivo)
+            // Math.floor() -> Arredonda um número para baixo (retira as casas decimais.)
+            // Multiplicando o número aleatório por 6, teremos um número entre 0 e 5.9999...
+            // Somando 1, teremos um número entre 1 e 6.9999
+
+            var numeroAleatorio = Math.floor(Math.random() * 6) + 1;
+            
+            var indiceImagem = numeroAleatorio - 1; // Ajustar o índice para acessar o array de imagens
+            document.getElementById("dadoImagem").src = imagens[indiceImagem]; // Alterar a imagem do dado
+
+            //dado.textContent = numeroAleatorio; // Alterar o texto interno do elemento
+            dado.innerHTML = "<strong>" + numeroAleatorio + "</strong>"; // Alterar o HTML interno do elemento
+            
+            //alert(Math.floor(  Math.random()* 6));
+        }
+    </script>
+
+</body>
+
+</html>
